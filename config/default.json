@@ -1,3 +1,4 @@
 {
-    "mongoURI" : "mongodb+srv://Aditya1234:mlab2020@devconnector.ufoc1.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongoURI" : "mongodb+srv://Aditya1234:mlab2020@devconnector.ufoc1.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret" : "mysecrettoken"
 }
