@@ -1,8 +1,13 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {setAlert} from '../../actions/alert';
+import PropTypes from 'prop-types'
+
 //import axios from 'axios';
 
-const Register = () => {
+
+const Register = ({setAlert}) => {   // the props are sent by actions under alert.
 
     const [formData, setFormData] = useState({
         name : '',
@@ -18,7 +23,7 @@ const Register = () => {
     const onSubmit = async e=> {
         e.preventDefault();
         if(password !== password2){
-            console.log('Passwords do not Match!');
+            setAlert('Passwords do not Match!','danger');   // first parameter is message and the second parameter is alertType ; Also danger is passed as a second parameter because we have css styles for different alertType ,which means we have green for success, red for danger and soo on. 
         }
         else{
             console.log("Success");
@@ -79,7 +84,11 @@ const Register = () => {
     
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert : PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Register);    //this is how we export while using react-redux ; Also connect takes in two parameters(search at the time of revision!)
 
 
 /* this is one way to send post request and receive a token with the help of axios.
