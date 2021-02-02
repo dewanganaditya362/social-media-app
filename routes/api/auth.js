@@ -46,12 +46,12 @@ router.post('/',[
     }
 
 
-    const isMatch = await bcrypt.compare(password , user.password);
+    const isMatch = await bcrypt.compare(password , user.password); // compares the given password with encrypted password
     
     if(!isMatch){
         return res.status(400).json({errors: [ { msg : 'Invalid Credentials!' } ] } );
     }
-    
+
     //Return jsonwebtoken
     const payload  = {
         user: {

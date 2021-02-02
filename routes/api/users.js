@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');  // used for encryption of password
 const jwt = require('jsonwebtoken'); // used for authentication of the users.
 const config = require('config');
 const router = express.Router();
-const { body , validationResult} = require("express-validator"); // these are required to validate whether the person has put correct information in the fields given.
+const { body , validationResult } = require("express-validator"); // these are required to validate whether the person has put correct information in the fields given.
 
 const User = require('../../models/User');
 
@@ -16,6 +16,7 @@ router.post('/',[
     body('email', 'Please include a valid email').isEmail(),
     body('password', 'Please enter a password with 6 or more characters').isLength({min : 6})
 ], async (req, res)=> {
+    
     const errors = validationResult(req); // it return the results whether it has any errors or not.
 
     if(!errors.isEmpty()){

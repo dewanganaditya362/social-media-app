@@ -48,7 +48,7 @@ async (req, res)=> {
 // @desc   Get all post
 // @access Private
 
-router.get('/', auth , async (req, res) =>{ // auth middleware basically protects the route , you should add it only when the access is supposed to be private else no need to add it if the route is public
+router.get('/', auth , async (req, res) =>{     //auth middleware basically protects the route , you should add it only when the access is supposed to be private else no need to add it if the route is public
     try {
         const post = await Post.find().sort({date : -1});
         res.json(post);
@@ -84,7 +84,7 @@ router.get('/:id', auth , async (req, res) =>{ // auth middleware basically prot
 // @desc   Get all post
 // @access Private
 
-router.delete('/:id', auth , async (req, res) =>{ // auth middleware basically protects the route , you should add it only when the access is supposed to be private else no need to add it if the route is public
+router.delete('/:id', auth , async (req, res) =>{  // auth middleware basically protects the route , you should add it only when the access is supposed to be private else no need to add it if the route is public
     try {
         const post = await Post.findById(req.params.id);
 
@@ -238,7 +238,6 @@ router.delete('/comment/:id/:comment_id', auth , async (req, res)=>{
         await post.save();
 
         res.json(post.comments);
-
 
     } catch (err) {
         console.error(err.message);
