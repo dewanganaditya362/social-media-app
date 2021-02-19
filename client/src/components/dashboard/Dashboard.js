@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { setAlert } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
+import DasboardActions from './DashboardActions';
 
 const Dashboard = ({ getCurrentProfile, auth :{user}, profile : {profile , loading } }) => {
     
@@ -14,14 +15,14 @@ const Dashboard = ({ getCurrentProfile, auth :{user}, profile : {profile , loadi
         getCurrentProfile();
     }, []);    // the second parameter i.e. [] , is used so that the useEffect function runs only once.
     
-    return loading && profile === null ? (<Spinner/>) : <Fragment>
+    return loading && profile === null ? (<Spinner/>) : (<Fragment>
         <h1 className = "large text-primary">Dashboard</h1>
         <p className= "lead">
             <i className = "fas fa-user"></i>
             Welcome! {user && user.name}
         </p>
-        { profile !== null ? <Fragment>has</Fragment> : 
-        <Fragment>
+        { profile !== null ? ( <Fragment><DasboardActions/></Fragment> ) : 
+       (<Fragment>
             <p>
                 You have not yet setup a profile , please add some info
             </p>
@@ -29,9 +30,9 @@ const Dashboard = ({ getCurrentProfile, auth :{user}, profile : {profile , loadi
                 Create Profile
             </Link>
 
-        </Fragment> }
-    </Fragment>;
-}
+        </Fragment>) }
+    </Fragment>);
+};
 
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
