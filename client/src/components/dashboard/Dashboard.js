@@ -16,7 +16,7 @@ const Dashboard = ({ getCurrentProfile, deleteAccount,  auth :{user}, profile : 
     
     useEffect(() => {
         getCurrentProfile();
-    }, []);    // the second parameter i.e. [] , is used so that the useEffect function runs only once.
+    }, [getCurrentProfile]);    // the second parameter i.e. [] , is used so that the useEffect function runs only once.
     
     return loading && profile === null ? (<Spinner/>) : (<Fragment>
         <h1 className = "large text-primary">Dashboard</h1>
